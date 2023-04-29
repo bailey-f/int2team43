@@ -1,15 +1,15 @@
 # Changelog
 
-## v1.0.0
+## v1.0.0 - init commit
 
 ### Added or Changed
 - Added this changelog :)
-- Fixed typos in both templates
-- Back to top links
-- Added more "Built With" frameworks/libraries
-- Changed table of contents to start collapsed
-- Added checkboxes for major features on roadmap
+- Initial Commit
 
-### Removed
+## v1.0.1 - The real first version
 
-- Some packages/libraries from acknowledgements I no longer use
+### Added or Changed
+- Initial working model
+- Added .gitignore
+- Changed the README
+- Overhauled the Getting Started section
