@@ -79,7 +79,6 @@ def preprocessing(image_set, labels, augment=False):
 
     img = np.asarray(img, dtype=np.float32)
     label = np.asarray(label, dtype=np.float32)
-    # dataset = (img, label).map(lambda x, y: (data_augmentation(x, training=True), y), num_parallel_calls=tf.data.AUTOTUNE)
     return img, label
 
 # Load datasplits
