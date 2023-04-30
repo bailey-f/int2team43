@@ -38,6 +38,7 @@ def create_model(X_train, y_train, X_valid, y_valid):
 def preprocessing(image_set, labels, augment=False):
     img = []
     label = []
+    WIDTH, HEIGHT, CHANNELS = 128, 128, 3
     for x in range(len(image_set)):
         # padding the start of the number with zeroes
         path = 'jpg/image_' + str(image_set[x]).zfill(5) + '.jpg'
@@ -46,7 +47,7 @@ def preprocessing(image_set, labels, augment=False):
         image = tf.io.read_file(path)
         image = tf.io.decode_jpeg(image)
         processed_image = tf.image.convert_image_dtype(image, tf.float32)
-        processed_image = tf.image.resize(image, [128, 128])
+        processed_image = tf.image.resize(image, [WIDTH, HEIGHT])
 
         # Normalise the colour values
         processed_image = processed_image / 255.0
@@ -72,7 +73,7 @@ def preprocessing(image_set, labels, augment=False):
             # random crop
             for y in range(3):
                 seed = (y, 0)
-                aug = tf.image.stateless_random_crop(processed_image, size=[128,128,3], seed=seed)
+                aug = tf.image.stateless_random_crop(processed_image, size=[WIDTH, HEIGHT, CHANNELS], seed=seed)
                 img.append(aug)
                 label.append(labels[image_set[x]-1])
 
@@ -119,7 +120,7 @@ model = create_model(X_train, y_train, X_valid, y_valid)
 print(model.summary())
 
 np.random.seed(42)
-history = model.fit(X_train, y_train, validation_data=(X_valid, y_valid), epochs=25, batch_size=64)
+history = model.fit(X_train, y_train, validation_data=(X_valid, y_valid), epochs=25, batch_size=65)
 
 scores = model.evaluate(X_valid, y_valid, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
