@@ -97,9 +97,9 @@ This is an example of how to list things you need to use the software and how to
 
 * pip 23.x or higher, see [here](https://pypi.org)
 
-* Tensorflow, numpy, opencv-python, scipy 
+* Tensorflow, numpy, scipy 
   ```sh
-  pip install tensorflow numpy opencv-python
+  pip install tensorflow numpy scipy
   ```
 * The 102flowers.tgz, setid.mat, and imagelables.mat files found [here](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/)
 
