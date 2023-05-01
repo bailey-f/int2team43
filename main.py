@@ -38,7 +38,8 @@ def create_model(X_train, y_train, X_valid, y_valid):
 def preprocessing(image_set, labels, augment=False):
     img = []
     label = []
-    WIDTH, HEIGHT, CHANNELS = 128, 128, 3
+    WIDTH, HEIGHT, CHANNELS = 64, 64, 3
+    PERMS = 10
     for x in range(len(image_set)):
         # padding the start of the number with zeroes
         path = 'jpg/image_' + str(image_set[x]).zfill(5) + '.jpg'
@@ -57,21 +58,21 @@ def preprocessing(image_set, labels, augment=False):
         
         if augment:
             # random flips
-            for y in range(3):
+            for y in range(PERMS):
                 seed = (y, 0)
                 aug = tf.image.stateless_random_flip_left_right(processed_image, seed=seed)
                 img.append(aug)
                 label.append(labels[image_set[x]-1])
         
             # random jpeg quality
-            for y in range(3):
+            for y in range(PERMS):
                 seed = (y, 0)
                 aug = tf.image.stateless_random_jpeg_quality(processed_image, 50, 100, seed=seed)
                 img.append(aug)
                 label.append(labels[image_set[x]-1])
 
             # random crop
-            for y in range(3):
+            for y in range(PERMS):
                 seed = (y, 0)
                 aug = tf.image.stateless_random_crop(processed_image, size=[WIDTH, HEIGHT, CHANNELS], seed=seed)
                 img.append(aug)
