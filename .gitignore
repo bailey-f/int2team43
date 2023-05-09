@@ -154,6 +154,5 @@ cython_debug/
 
 # Project specific
 jpg/
-setid.mat
-imagelabels.mat
 *.mat
+models/
